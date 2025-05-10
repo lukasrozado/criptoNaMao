@@ -1,0 +1,76 @@
+{% extends "global/base.html" %}
+{% load static %}
+{% block main %}
+<!-- Hero -->
+<section class="relative flex items-center justify-center h-screen text-center"
+         style="background: url('{% static 'global/image/blockchain.jpg' %}') center/cover no-repeat;">
+    <div class="bg-black/50 p-8 rounded">
+        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
+            BLOCKCHAIN<br>UNIVERSE
+        </h1>
+        <p class="mt-4 text-lg md:text-2xl">Plataforma educacional sobre criptomoedas</p>
+        <a href="#start" class="mt-6 inline-block px-6 py-3 bg-red-500 rounded font-semibold hover:bg-red-600 transition">
+            Começar →
+        </a>
+    </div>
+</section>
+
+<!-- Cursos Destacados -->
+<section id="start" class="py-16">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-center px-4">
+        <div>
+            <h2 class="text-3xl font-bold mb-4">Aprenda com os Melhores</h2>
+            <p>
+                Cursos sobre Bitcoin, Ethereum, NFTs e mais.
+            </p>
+        </div>
+        <div>
+            <img src="{% static 'global/image/bitcoin.jpg' %}" 
+                 alt="EVM Extensions"
+                 class="rounded shadow-lg" />
+        </div>
+    </div>
+</section>
+
+<!-- Cards de Cursos -->
+<section class="py-16 bg-gray-900">
+    <div class="max-w-7xl mx-auto text-center px-4">
+        <h3 class="text-2xl font-semibold mb-8">Cursos Populares</h3>
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="space-y-2">
+                <img src="{% static 'global/image/bitcoin.jpg' %}" class="mx-auto rounded" />
+                <p>Introdução ao Bitcoin</p>
+            </div>
+            <div class="space-y-2">
+                <img src="{% static 'global/image/ethereum.jpg' %}" class="mx-auto rounded" />
+                <p>Ethereum e Smart Contracts</p>
+            </div>
+            <div class="space-y-2">
+                <img src="{% static 'global/image/nft.jpg' %}" class="mx-auto rounded" />
+                <p>NFTs: Tokens Não Fungíveis</p>
+            </div>
+        </div>
+        <a href="{% url 'cursos' %}" class="px-6 py-3 border border-red-500 rounded hover:bg-red-500 transition">
+            Ver Todos os Cursos
+        </a>
+    </div>
+</section>
+
+<!-- Stats -->
+<section class="py-16">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-6 text-center px-4">
+        <div>
+            <p class="text-4xl font-bold">203K+</p>
+            <p>Usuários Ativos</p>
+        </div>
+        <div>
+            <p class="text-4xl font-bold">400K+</p>
+            <p>Transações Mensais</p>
+        </div>
+        <div>
+            <p class="text-4xl font-bold">502+</p>
+            <p>Cursos Disponíveis</p>
+        </div>
+    </div>
+</section>
+{% endblock main %}

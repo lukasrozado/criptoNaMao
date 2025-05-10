@@ -1,0 +1,11 @@
+/* Scroll suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Ajuste para mobile */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 20px;
+    }
+}

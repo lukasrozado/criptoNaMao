@@ -1,0 +1,33 @@
+
+{% extends "global/base.html" %}
+
+{% block main %}
+
+{% load static %}
+<section id="carousel" class="carousel slide" data-bs-ride="carousel">
+        <article class="carousel-inner">
+          <figure class="carousel-item active" data-bs-interval="2000">
+            <img src="{% static '/global/image/japao.jpg' %}" class="d-block w-100" alt="..." height="600">
+          </figure>
+          <figure class="carousel-item" data-bs-interval="2000">
+            <img src="{% static '/global/image/manaus.jpg' %}" class="d-block w-100" alt="..." height="600">
+          </figure>
+          <figure class="carousel-item" data-bs-interval="2000">
+            <img src="{% static '/global/image/paraiba.jpg' %}" class="d-block w-100" alt="..." height="600">
+          </figure>
+          <figure class="carousel-item" data-bs-interval="2000">
+            <img src="{% static '/global/image/sanandreas.jpg' %}" class="d-block w-100" alt="..." height="600">
+          </figure>
+        </article>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+
+{% endblock main %}
