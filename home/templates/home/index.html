@@ -3,7 +3,7 @@
 
 {% block main %}
   <!-- Hero -->
-  <section id="inicio" class="bg-gradient-to-br from-blue-300 to-blue-700 py-10 md:py-32">
+  <section id="inicio" class="bg-gradient-to-b from-blue-700 to-blue-300 py-10 md:py-32">
     <div class="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center">
       <!-- Card de Texto -->
       <div class="md:w-1/2 mb-10 md:mb-0">
@@ -16,12 +16,12 @@
             Entenda tudo desde o básico. Aprenda no<br>seu ritmo, com cursos e conteúdos feitos<br>para quem está começando.
           </p>
           <div class="flex space-x-4">
-            <a href="#cursos"
-               class="px-3 py-2 bg-blue-400 text-white rounded-full font-semibold hover:bg-blue-500">
+            <a href="{% url 'registration_register' %}"
+               class="px-3 py-2 bg-blue-400 text-white rounded-full font-semibold hover:bg-blue-500 text-center">
               Começar agora
             </a>
             <a href="#como"
-               class="px-3 py-2 bg-white text-blue-900 rounded-full font-semibold hover:bg-blue-100">
+               class="px-3 py-2 bg-white text-blue-900 rounded-full font-semibold hover:bg-blue-100 text-center">
               Ver como funciona
             </a>
           </div>
@@ -29,39 +29,40 @@
       </div>
       <!-- Imagem do Celular -->
       <div class="md:w-1/2 flex justify-center transform transition duration-300 md:scale-125 scale-100">
-        <img src="{% static 'global/image/celular-3d.png' %}"
-             alt="Celular com gráficos"
+        <img src="{% static 'global/image/celular-3d.png' %}" alt="Celular carteira"
              class="w-full h-auto max-w-none">
       </div>
     </div>
   </section>
 
   <!-- Trilha -->
-  <section id="sobre" class="container mx-auto px-6 py-20 bg-white rounded-xl shadow-lg mt-8">
+<div class="bg-gradient-to-b from-blue-300 white py-10 md:py-32">
+  <section id="sobre" class="container mx-auto px-6 py-20 rounded-xl mt-8">
     <h2 class="text-3xl font-bold text-center mb-12">Trilha passo a passo</h2>
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div class="text-center">
+      <div class="bg-white p-6 rounded-xl shadow-lg text-center">
         <div class="text-5xl mb-3">🟢</div>
         <h3 class="font-semibold mb-2">O que é criptomoeda?</h3>
         <p>Registro digital como um caderno que ninguém pode apagar.</p>
       </div>
-      <div class="text-center">
+      <div class="bg-white p-6 rounded-xl shadow-lg text-center">
         <div class="text-5xl mb-3">📱</div>
         <h3 class="font-semibold mb-2">Como usar no dia a dia</h3>
         <p>Pagamentos no celular como Pix.</p>
       </div>
-      <div class="text-center">
+      <div class="bg-white p-6 rounded-xl shadow-lg text-center">
         <div class="text-5xl mb-3">🔑</div>
         <h3 class="font-semibold mb-2">Chaves públicas/privadas</h3>
         <p>Uma é senha, outra é endereço.</p>
       </div>
-      <div class="text-center">
+      <div class="bg-white p-6 rounded-xl shadow-lg text-center">
         <div class="text-5xl mb-3">🚀</div>
         <h3 class="font-semibold mb-2">Próximos passos</h3>
         <p>Escolha seu nível e comece grátis.</p>
       </div>
     </div>
   </section>
+
 
   <!-- Benefícios -->
   <section id="como" class="container mx-auto px-6 py-20">
@@ -86,18 +87,18 @@
   </section>
 
   <!-- Depoimentos -->
-  <section id="depoimentos" class="bg-white py-20">
+  <section id="depoimentos" class="py-20">
     <h2 class="text-3xl font-bold text-center mb-12">O que nossos alunos dizem</h2>
     <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-      <blockquote class="p-6 rounded-xl shadow-lg">
+      <blockquote class="bg-white p-6 rounded-xl shadow-lg text-center">
         <p class="italic mb-4">"O curso me deu confiança para usar criptomoedas no dia a dia."</p>
         <footer class="font-semibold">— João, 30 anos</footer>
       </blockquote>
-      <blockquote class="p-6 rounded-xl shadow-lg">
+      <blockquote class="bg-white p-6 rounded-xl shadow-lg text-center">
         <p class="italic mb-4">"Metáforas do dia a dia fizeram tudo fazer sentido."</p>
         <footer class="font-semibold">— Maria, 26 anos</footer>
       </blockquote>
-      <blockquote class="p-6 rounded-xl shadow-lg">
+      <blockquote class="bg-white p-6 rounded-xl shadow-lg text-center">
         <p class="italic mb-4">"Recomendo para quem nunca ouviu falar em blockchain!"</p>
         <footer class="font-semibold">— Pedro, 35 anos</footer>
       </blockquote>
@@ -105,33 +106,35 @@
   </section>
 
   <!-- Cursos -->
-  <section id="cursos" class="py-20 bg-white">
+  <section id="cursos" class="py-20">
     <div class="container mx-auto px-6">
       <h2 class="text-3xl font-bold text-center mb-4">Nossos Cursos</h2>
       <p class="text-center mb-8">Nível iniciante, intermediário e avançado. Comece grátis!</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
-        <div class="w-full max-w-xs p-6 rounded-xl shadow-lg text-center">
+        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
           <h3 class="text-2xl font-semibold mb-2">Iniciante</h3>
           <p class="mb-4">Introdução ao Dinheiro Digital</p>
-          <a href="#" class="px-3 py-2 bg-blue-400 text-white rounded-full font-semibold hover:bg-blue-500">
+          <a href="{% url 'registration_register' %}" class="px-3 py-2 bg-blue-400 text-white rounded-full font-semibold hover:bg-blue-500">
             Inscrever grátis
           </a>
         </div>
-        <div class="w-full max-w-xs p-6 rounded-xl shadow-lg text-center">
+        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
           <h3 class="text-2xl font-semibold mb-2">Intermediário</h3>
           <p class="mb-4">Como investir com segurança</p>
-          <a href="#" class="px-3 py-2 bg-blue-400 text-white rounded-full font-semibold hover:bg-blue-500">
+          <a href="{% url 'registration_register' %}" class="px-3 py-2 bg-blue-400 text-white rounded-full font-semibold hover:bg-blue-500">
             Inscrever grátis
           </a>
         </div>
-        <div class="w-full max-w-xs p-6 rounded-xl shadow-lg text-center">
+        <div class="bg-white p-6 rounded-xl shadow-lg text-center">
           <h3 class="text-2xl font-semibold mb-2">Avançado</h3>
           <p class="mb-4">DeFi, NFTs e o futuro</p>
-          <a href="#" class="px-3 py-2 bg-blue-400 text-white rounded-full font-semibold hover:bg-blue-500">
+          <a href="{% url 'registration_register' %}" class="px-3 py-2 bg-blue-400 text-white rounded-full font-semibold hover:bg-blue-500">
             Inscrever grátis
           </a>
         </div>
       </div>
     </div>
   </section>
+
+</div>
 {% endblock %}

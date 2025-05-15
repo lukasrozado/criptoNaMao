@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-z#q)#=bqe+9b0wv)x#zc+^^)c_q&n-kiy_rd)=3w1m-$wb$f6d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 LOGIN_REDIRECT_URL = 'cursos'
@@ -56,7 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'educacaoblockchain.urls'
+ROOT_URLCONF = 'cripto_na_mao.urls'
 
 TEMPLATES = [
     {
@@ -79,7 +79,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'educacaoblockchain.wsgi.application'
+WSGI_APPLICATION = 'cripto_na_mao.wsgi.application'
 
 
 # Database
@@ -135,18 +135,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.1/howto/static-files/
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'base' / 'static', 
+]
+
+# Mantenha o restante
 STATIC_URL = 'static/'
-
-# chamar os arquivos staticos pelo diretorio
-STATICFILES_DIRS = [
-    BASE_DIR / 'base' / 'static',
-]
-
-# chamar os arquivos staticos usando a biblioteca os
-STATICFILES_DIRS = [
-    BASE_DIR / 'base/static',  
-    BASE_DIR / 'templates',   
-]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

@@ -1,8 +1,6 @@
-
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
-from django.contrib.auth.views import LoginView
 from django.conf import settings
 from rest_framework import routers
 from usuarios.views import register
@@ -16,8 +14,8 @@ urlpatterns = [
     path('sobre/', include('sobre.urls')),
     path('contato/', include('contato.urls')),
     path('usuarios/', include('usuarios.urls', namespace='usuarios')),
-    path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/register/', register, name='registration_register'),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 ]
 
