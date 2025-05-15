@@ -51,34 +51,3 @@ def register(request):
         'user_form': user_form,
         'pessoa_form': pessoa_form
     })
-
-def gravar(request):
-    #salva os dados da tela no banco
-    nova_pessoa = Pessoa()
-    nova_pessoa.nome = request.POST.get("nome")
-    nova_pessoa.telefone = request.POST.get("movel")
-    nova_pessoa.email = request.POST.get("correio")
-    nova_pessoa.save()
-
-    return usuarios(request)
-
-def editar(request, id):
-    pessoa = Pessoa.objects.get(id_pessoa = id)
-    return render(
-        request, 'cadastro/index.html',
-        {
-            "pessoa": pessoa
-        }
-    )
-
-def atualizar(request,id):
-    pessoa = Pessoa.objects.get(id_pessoa = id)
-    pessoa.nome = request.POST.get("nome")
-    pessoa.telefone = request.POST.get("movel")
-    pessoa.email = request.POST.get("correio")
-    pessoa.save()
-    return usuarios(request)
-def apagar(request,id):
-    pessoa = Pessoa.objects.get(id_pessoa = id)
-    pessoa.delete()
-    return usuarios(request)
