@@ -12,7 +12,7 @@
       <a href="{% url 'sobre' %}"    class="hover:text-pastel-blue">Sobre</a>
       <a href="{% url 'home' %}#sobre"     class="hover:text-pastel-blue">Como Funciona</a>
       <a href="{% url 'home' %}#depoimentos" class="hover:text-pastel-blue">Depoimentos</a>
-      <a href="{% url 'home' %}#cursos"   class="hover:text-pastel-blue">Cursos</a>
+      <a href="{% url 'cursos' %}"   class="hover:text-pastel-blue">Cursos</a>
       <a href="{% url 'contato' %}"  class="hover:text-pastel-blue">Contato</a>
     </nav>
 
@@ -50,7 +50,7 @@
     <a href="{% url 'sobre' %}"     class="block px-4 py-2 text-sm hover:bg-beige-light">Sobre</a>
     <a href="{% url 'home' %}#como"      class="block px-4 py-2 text-sm hover:bg-beige-light">Como Funciona</a>
     <a href="{% url 'home' %}#depoimentos" class="block px-4 py-2 text-sm hover:bg-beige-light">Depoimentos</a>
-    <a href="{% url 'home' %}#cursos"    class="block px-4 py-2 text-sm hover:bg-beige-light">Cursos</a>
+    <a href="{% url 'cursos' %}"    class="block px-4 py-2 text-sm hover:bg-beige-light">Cursos</a>
     <a href="{% url 'contato' %}"   class="block px-4 py-2 text-sm hover:bg-beige-light">Contato</a>
     <div class="border-t border-gray-200 my-2"></div>
     {% if user.is_authenticated %}

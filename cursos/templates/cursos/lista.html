@@ -1,16 +1,198 @@
-{% for curso in cursos %}
-  <h2>{{ curso.titulo }}</h2>
-  {% for modulo in curso.modulos.all %}
-    <h3>{{ modulo.titulo }}</h3>
-    <ul>
-      {% for conteudo in modulo.conteudos.all %}
-        <li>
-          {{ conteudo.titulo }} - {{ conteudo.tipo }}
-          {% if conteudo.arquivo %}
-            <a href="{{ conteudo.arquivo.url }}">DOWNLOAD</a>
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  {% endfor %}
-{% endfor %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cursos Blockchain</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Fontes Customizadas -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .prose-custom {
+      max-width: 100%;
+      line-height: 1.6;
+      color: #374151;
+    }
+    .prose-custom h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 1.5rem 0 1rem;
+      color: #1e40af;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen bg-gradient-to-br from-blue-300 to-blue-700 text-black overflow-x-hidden">
+  <!-- HEADER -->
+  <header class="bg-white fixed top-0 w-full z-20 text-black">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="{% url 'home' %}" class="flex items-center">
+        <img src="{% static 'global/image/logo.png' %}" class="h-20 w-auto" alt="Logo">
+      </a>
+  
+      <!-- Navegação Desktop -->
+      <nav class="hidden md:flex space-x-4">
+        <a href="{% url 'home' %}#inicio"   class="hover:text-pastel-blue">Início</a>
+        <a href="{% url 'sobre' %}"    class="hover:text-pastel-blue">Sobre</a>
+        <a href="{% url 'home' %}#sobre"     class="hover:text-pastel-blue">Como Funciona</a>
+        <a href="{% url 'home' %}#depoimentos" class="hover:text-pastel-blue">Depoimentos</a>
+        <a href="{% url 'cursos' %}"   class="hover:text-pastel-blue">Cursos</a>
+        <a href="{% url 'contato' %}"  class="hover:text-pastel-blue">Contato</a>
+      </nav>
+  
+      <!-- Ações Desktop -->
+      <div class="hidden md:flex space-x-3">
+        {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}"
+             class="px-3 py-1 text-sm border border-blue-500 rounded-full hover:bg-blue-500/20">
+            Logout
+          </a>
+        {% else %}
+          <a href="{% url 'login' %}"
+             class="px-3 py-1 text-sm border border-blue-500 rounded-full hover:bg-blue-500/20">
+            Login
+          </a>
+          <a href="{% url 'registration_register' %}"
+             class="px-3 py-1 text-sm bg-blue-400 text-white rounded-full hover:bg-blue-500">
+            Cadastre-se
+          </a>
+        {% endif %}
+      </div>
+  
+      <!-- Toggle Mobile -->
+      <button id="menu-btn" class="md:hidden focus:outline-none text-black">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  
+    <!-- Menu Mobile -->
+    <div id="mobile-menu" class="hidden bg-white shadow-lg">
+      <a href="{% url 'home' %}#inicio"    class="block px-4 py-2 text-sm hover:bg-beige-light">Início</a>
+      <a href="{% url 'sobre' %}"     class="block px-4 py-2 text-sm hover:bg-beige-light">Sobre</a>
+      <a href="{% url 'home' %}#como"      class="block px-4 py-2 text-sm hover:bg-beige-light">Como Funciona</a>
+      <a href="{% url 'home' %}#depoimentos" class="block px-4 py-2 text-sm hover:bg-beige-light">Depoimentos</a>
+      <a href="{% url 'cursos' %}    class="block px-4 py-2 text-sm hover:bg-beige-light">Cursos</a>
+      <a href="{% url 'contato' %}"   class="block px-4 py-2 text-sm hover:bg-beige-light">Contato</a>
+      <div class="border-t border-gray-200 my-2"></div>
+      {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}"
+           class="block w-full text-left px-4 py-2 hover:bg-beige-light">Logout</a>
+      {% else %}
+        <a href="{% url 'login' %}"
+           class="block w-full text-left px-4 py-2 hover:bg-beige-light">Login</a>
+        <a href="{% url 'registration_register' %}"
+           class="block w-full text-left px-4 py-2 hover:bg-beige-light">Cadastre-se</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow pt-24 container mx-auto px-6 lg:px-8">
+
+    <!-- Section: Cursos -->
+    <section id="cursos" class="py-16 bg-white rounded-xl shadow-lg">
+      <div class="max-w-4xl mx-auto text-center mb-12">
+        <h1 class="text-4xl font-extrabold text-gray-800 mb-4">
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+            Cursos de Blockchain
+          </span>
+        </h1>
+        <p class="text-lg text-gray-600">Aprenda através de módulos progressivos com conteúdo prático e acessível.</p>
+      </div>
+
+      <div class="space-y-10">
+        {% for curso in cursos %}
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl shadow-xl overflow-hidden">
+          <div class="p-8 border-b border-gray-200">
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">{{ curso.titulo }}</h2>
+            <p class="text-gray-700">{{ curso.descricao }}</p>
+          </div>
+          <div class="p-8 space-y-8">
+            {% for modulo in curso.modulos.all %}
+            <div class="border-2 border-dashed border-gray-200 rounded-xl p-6 bg-gray-50">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                <span class="bg-blue-600 text-white rounded-full px-3 py-1 text-sm">
+                  Módulo {{ forloop.counter }}
+                </span>
+                {{ modulo.titulo }}
+              </h3>
+              {% if modulo.descricao %}
+              <p class="text-gray-600 mb-4">{{ modulo.descricao }}</p>
+              {% endif %}
+
+              <div class="space-y-6">
+                {% for conteudo in modulo.conteudos.all %}
+                <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+                  <div class="flex items-center gap-3 mb-4">
+                    {% if conteudo.tipo == "video" %}
+                      <span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">🎥 Vídeo</span>
+                    {% elif conteudo.tipo == "artigo" %}
+                      <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">📄 Artigo</span>
+                    {% else %}
+                      <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs">📁 Arquivo</span>
+                    {% endif %}
+                    <h4 class="text-lg font-medium text-gray-900">{{ conteudo.titulo }}</h4>
+                  </div>
+
+                  {% if conteudo.tipo == "video" %}
+                  <div class="aspect-video rounded-lg overflow-hidden shadow-lg">
+                    <iframe
+                      src="https://www.youtube.com/embed/{{ conteudo.video_url|cut:'https://www.youtube.com/watch?v=' }}"
+                      class="w-full h-full"
+                      allowfullscreen>
+                    </iframe>
+                  </div>
+                  {% elif conteudo.tipo == "artigo" %}
+                  <div class="prose-custom">
+                    {{ conteudo.texto|linebreaks }}
+                  </div>
+                  {% else %}
+                  <div class="flex items-center gap-4">
+                    <a href="{{ conteudo.arquivo.url }}" download
+                       class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                      📥 Baixar Material
+                    </a>
+                    <span class="text-sm text-gray-500">
+                      {{ conteudo.arquivo.size|filesizeformat }} • {{ conteudo.arquivo.url|slice:"-3:"|upper }}
+                    </span>
+                  </div>
+                  {% endif %}
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-200 py-6">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-gray-600 text-sm">&copy; 2025 Cripto na Mão — Aprenda sem medo</p>
+      <div class="flex space-x-4 mt-4 md:mt-0">
+        <a href="#" class="text-gray-600 hover:text-blue-600">Facebook</a>
+        <a href="#" class="text-gray-600 hover:text-blue-600">Twitter</a>
+        <a href="#" class="text-gray-600 hover:text-blue-600">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle menu mobile
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+  </script>
+</body>
+</html>

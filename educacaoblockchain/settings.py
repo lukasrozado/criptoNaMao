@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-z#q)#=bqe+9b0wv)x#zc+^^)c_q&n-kiy_rd)=3w1m-$wb$f6d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 LOGIN_REDIRECT_URL = 'cursos'
@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'contato.apps.ContatoConfig',
     'usuarios.apps.UsuariosConfig',
      'widget_tweaks',
-     'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +54,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'educacaoblockchain.urls'
@@ -161,6 +159,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
+
+
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+]
+
 
 INTERNAL_IPS = [
     '127.0.0.1',
