@@ -1,0 +1,26 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+<h2>{{ curso.titulo }}</h2>
+<p>{{ curso.descricao }}</p>
+
+<h3>Módulos</h3>
+{% for modulo in curso.modulos.all %}
+  <h4>{{ modulo.titulo }}</h4>
+  <p>{{ modulo.descricao }}</p>
+  <ul>
+    {% for conteudo in modulo.conteudos.all %}
+      <li>
+        {{ conteudo.titulo }} - {{ conteudo.tipo }}<br>
+        {% if conteudo.tipo == 'artigo' %}
+          <p>{{ conteudo.texto|linebreaks }}</p>
+        {% elif conteudo.tipo == 'video' %}
+          <iframe width="560" height="315" src="{{ conteudo.video_url }}" frameborder="0" allowfullscreen></iframe>
+        {% elif conteudo.tipo == 'arquivo' %}
+          <a href="{{ conteudo.arquivo.url }}">Baixar arquivo</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endfor %}
+{% endblock %}

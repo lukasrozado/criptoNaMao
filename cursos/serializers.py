@@ -1,10 +1,21 @@
 from rest_framework import serializers
-from cursos.models import Topico
+from .models import Curso, Modulo, Conteudo
 
+class ConteudoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Conteudo
+        fields = '__all__'
 
-class TopicoSerializer(serializers.ModelSerializer):
-
+class ModuloSerializer(serializers.ModelSerializer):
+    conteudos = ConteudoSerializer(many=True, read_only=True)
 
     class Meta:
-        model = Topico
-        fields = '__all__'
+        model = Modulo
+        fields = ['id', 'titulo', 'descricao', 'conteudos']
+
+class CursoSerializer(serializers.ModelSerializer):
+    modulos = ModuloSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Curso
+        fields = ['id', 'titulo', 'descricao', 'modulos']

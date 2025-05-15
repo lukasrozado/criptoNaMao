@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-z#q)#=bqe+9b0wv)x#zc+^^)c_q&n-kiy_rd)=3w1m-$wb$f6d
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+LOGIN_REDIRECT_URL = 'cursos'
 
 # Application definition
 
@@ -40,10 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
     'cursos.apps.CursosConfig',
-    'topicos.apps.TopicosConfig',
-    'midia.apps.MidiaConfig',
+    'sobre.apps.SobreConfig',
+    'contato.apps.ContatoConfig',
     'usuarios.apps.UsuariosConfig',
      'widget_tweaks',
+     'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'educacaoblockchain.urls'
@@ -131,6 +133,7 @@ USE_I18N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
@@ -156,5 +159,10 @@ LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+    'localhost',
+]

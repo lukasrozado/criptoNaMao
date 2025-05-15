@@ -1,0 +1,16 @@
+{% for curso in cursos %}
+  <h2>{{ curso.titulo }}</h2>
+  {% for modulo in curso.modulos.all %}
+    <h3>{{ modulo.titulo }}</h3>
+    <ul>
+      {% for conteudo in modulo.conteudos.all %}
+        <li>
+          {{ conteudo.titulo }} - {{ conteudo.tipo }}
+          {% if conteudo.arquivo %}
+            <a href="{{ conteudo.arquivo.url }}">DOWNLOAD</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+{% endfor %}

@@ -1,56 +1,66 @@
-<header class="w-full bg-gray-900/80 backdrop-blur fixed top-0 z-50">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4 relative">
-        <!-- Logo -->
-        <div class="text-xl font-bold p-4">BLOCKCHAIN UNIVERSE</div>
+{% load static %}
+<header class="bg-white fixed top-0 w-full z-20 text-black">
+  <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="{% url 'home' %}" class="flex items-center">
+      <img src="{% static 'global/image/logo.png' %}" class="h-20 w-auto" alt="Logo">
+    </a>
 
-        <!-- Menu Desktop -->
-        <nav id="nav-menu" class="hidden md:flex space-x-6 mx-auto">
-            <a href="{% url 'home' %}" class="hover:text-red-500">Início</a>
-            <a href="{% url 'cursos' %}" class="hover:text-red-500">Cursos</a>
-            <a href="{% url 'topicos' %}" class="hover:text-red-500">Tópicos</a>
-            <a href="{% url 'midia' %}" class="hover:text-red-500">Mídia</a>
-            <a href="{% url 'usuarios:index' %}" class="hover:text-red-500">Usuários</a>
-        </nav>
+    <!-- Navegação Desktop -->
+    <nav class="hidden md:flex space-x-4">
+      <a href="{% url 'home' %}#inicio"   class="hover:text-pastel-blue">Início</a>
+      <a href="{% url 'sobre' %}"    class="hover:text-pastel-blue">Sobre</a>
+      <a href="{% url 'home' %}#sobre"     class="hover:text-pastel-blue">Como Funciona</a>
+      <a href="{% url 'home' %}#depoimentos" class="hover:text-pastel-blue">Depoimentos</a>
+      <a href="{% url 'home' %}#cursos"   class="hover:text-pastel-blue">Cursos</a>
+      <a href="{% url 'contato' %}"  class="hover:text-pastel-blue">Contato</a>
+    </nav>
 
-        <!-- Botões Laterais -->
-        <div class="hidden md:flex space-x-4">
-            {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="px-4 py-2 border border-red-500 rounded hover:bg-red-500 transition">
-                    Logout
-                </a>
-            {% else %}
-                <a href="{% url 'login' %}" class="px-4 py-2 border border-red-500 rounded hover:bg-red-500 transition">
-                    Login
-                </a>
-                <a href="{% url 'registration_register' %}" class="px-4 py-2 bg-red-500 rounded hover:bg-red-600 transition">
-                    Cadastre-se
-                </a>
-            {% endif %}
-            <button class="px-4 py-2 border border-red-500 rounded hover:bg-red-500 transition">
-                Contato
-            </button>
-        </div>
-
-        <!-- Ícone do Menu Móvel -->
-        <button id="menu-toggle" class="md:hidden focus:outline-none">
-            <!-- Ícone hamburguer -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button>
+    <!-- Ações Desktop -->
+    <div class="hidden md:flex space-x-3">
+      {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}"
+           class="px-3 py-1 text-sm border border-blue-500 rounded-full hover:bg-blue-500/20">
+          Logout
+        </a>
+      {% else %}
+        <a href="{% url 'login' %}"
+           class="px-3 py-1 text-sm border border-blue-500 rounded-full hover:bg-blue-500/20">
+          Login
+        </a>
+        <a href="{% url 'registration_register' %}"
+           class="px-3 py-1 text-sm bg-blue-400 text-white rounded-full hover:bg-blue-500">
+          Cadastre-se
+        </a>
+      {% endif %}
     </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden bg-gray-900 md:hidden px-4">
-        <div class="flex flex-col space-y-2 px-4">
-            <a href="{% url 'home' %}" class="hover:text-red-500">Início</a>
-            <a href="{% url 'cursos' %}" class="hover:text-red-500">Cursos</a>
-            <a href="{% url 'topicos' %}" class="hover:text-red-500">Tópicos</a>
-            <a href="{% url 'midia' %}" class="hover:text-red-500">Mídia</a>
-            <a href="{% url 'usuarios:index' %}" class="hover:text-red-500">Usuários</a>
-            <button class="mt-2 px-4 py-4 border border-red-500 rounded hover:bg-red-500 transition">
-                Contato
-            </button>
-        </div>
-    </div>
+    <!-- Toggle Mobile -->
+    <button id="menu-btn" class="md:hidden focus:outline-none text-black">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menu Mobile -->
+  <div id="mobile-menu" class="hidden bg-white shadow-lg">
+    <a href="{% url 'home' %}#inicio"    class="block px-4 py-2 text-sm hover:bg-beige-light">Início</a>
+    <a href="{% url 'sobre' %}"     class="block px-4 py-2 text-sm hover:bg-beige-light">Sobre</a>
+    <a href="{% url 'home' %}#como"      class="block px-4 py-2 text-sm hover:bg-beige-light">Como Funciona</a>
+    <a href="{% url 'home' %}#depoimentos" class="block px-4 py-2 text-sm hover:bg-beige-light">Depoimentos</a>
+    <a href="{% url 'home' %}#cursos"    class="block px-4 py-2 text-sm hover:bg-beige-light">Cursos</a>
+    <a href="{% url 'contato' %}"   class="block px-4 py-2 text-sm hover:bg-beige-light">Contato</a>
+    <div class="border-t border-gray-200 my-2"></div>
+    {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}"
+         class="block w-full text-left px-4 py-2 hover:bg-beige-light">Logout</a>
+    {% else %}
+      <a href="{% url 'login' %}"
+         class="block w-full text-left px-4 py-2 hover:bg-beige-light">Login</a>
+      <a href="{% url 'registration_register' %}"
+         class="block w-full text-left px-4 py-2 hover:bg-beige-light">Cadastre-se</a>
+    {% endif %}
+  </div>
 </header>

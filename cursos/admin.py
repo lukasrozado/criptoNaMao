@@ -1,8 +1,20 @@
 from django.contrib import admin
+from .models import Curso, Modulo, Conteudo
 
+class ConteudoInline(admin.TabularInline):
+    model = Conteudo
+    extra = 1
 
-# Register your models here.
-from .models import Topico
+class ModuloInline(admin.TabularInline):
+    model = Modulo
+    extra = 1
 
+@admin.register(Curso)
+class CursoAdmin(admin.ModelAdmin):
+    inlines = [ModuloInline]
 
-admin.site.register(Topico)
+@admin.register(Modulo)
+class ModuloAdmin(admin.ModelAdmin):
+    inlines = [ConteudoInline]
+
+admin.site.register(Conteudo)

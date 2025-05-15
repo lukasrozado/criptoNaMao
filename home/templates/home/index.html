@@ -1,76 +1,137 @@
 {% extends "global/base.html" %}
 {% load static %}
+
 {% block main %}
-<!-- Hero -->
-<section class="relative flex items-center justify-center h-screen text-center"
-         style="background: url('{% static 'global/image/blockchain.jpg' %}') center/cover no-repeat;">
-    <div class="bg-black/50 p-8 rounded">
-        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
-            BLOCKCHAIN<br>UNIVERSE
-        </h1>
-        <p class="mt-4 text-lg md:text-2xl">Plataforma educacional sobre criptomoedas</p>
-        <a href="#start" class="mt-6 inline-block px-6 py-3 bg-red-500 rounded font-semibold hover:bg-red-600 transition">
-            Começar →
-        </a>
+  <!-- Hero -->
+  <section id="inicio" class="bg-gradient-to-br from-blue-300 to-blue-700 py-10 md:py-32">
+    <div class="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center">
+      <!-- Card de Texto -->
+      <div class="md:w-1/2 mb-10 md:mb-0">
+        <div class="bg-blue-900 rounded-3xl p-10 w-full md:w-[90%] lg:w-[60%] mx-auto">
+          <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-6">
+            Dinheiro digital?<br>
+            <span class="text-blue-400">A gente explica passo</span> a passo o que são as criptomoedas.
+          </h1>
+          <p class="text-blue-200 mb-6">
+            Entenda tudo desde o básico. Aprenda no<br>seu ritmo, com cursos e conteúdos feitos<br>para quem está começando.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#cursos"
+               class="px-3 py-2 bg-blue-400 text-white rounded-full font-semibold hover:bg-blue-500">
+              Começar agora
+            </a>
+            <a href="#como"
+               class="px-3 py-2 bg-white text-blue-900 rounded-full font-semibold hover:bg-blue-100">
+              Ver como funciona
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Imagem do Celular -->
+      <div class="md:w-1/2 flex justify-center transform transition duration-300 md:scale-125 scale-100">
+        <img src="{% static 'global/image/celular-3d.png' %}"
+             alt="Celular com gráficos"
+             class="w-full h-auto max-w-none">
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- Cursos Destacados -->
-<section id="start" class="py-16">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 items-center px-4">
-        <div>
-            <h2 class="text-3xl font-bold mb-4">Aprenda com os Melhores</h2>
-            <p>
-                Cursos sobre Bitcoin, Ethereum, NFTs e mais.
-            </p>
-        </div>
-        <div>
-            <img src="{% static 'global/image/bitcoin.jpg' %}" 
-                 alt="EVM Extensions"
-                 class="rounded shadow-lg" />
-        </div>
+  <!-- Trilha -->
+  <section id="sobre" class="container mx-auto px-6 py-20 bg-white rounded-xl shadow-lg mt-8">
+    <h2 class="text-3xl font-bold text-center mb-12">Trilha passo a passo</h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="text-center">
+        <div class="text-5xl mb-3">🟢</div>
+        <h3 class="font-semibold mb-2">O que é criptomoeda?</h3>
+        <p>Registro digital como um caderno que ninguém pode apagar.</p>
+      </div>
+      <div class="text-center">
+        <div class="text-5xl mb-3">📱</div>
+        <h3 class="font-semibold mb-2">Como usar no dia a dia</h3>
+        <p>Pagamentos no celular como Pix.</p>
+      </div>
+      <div class="text-center">
+        <div class="text-5xl mb-3">🔑</div>
+        <h3 class="font-semibold mb-2">Chaves públicas/privadas</h3>
+        <p>Uma é senha, outra é endereço.</p>
+      </div>
+      <div class="text-center">
+        <div class="text-5xl mb-3">🚀</div>
+        <h3 class="font-semibold mb-2">Próximos passos</h3>
+        <p>Escolha seu nível e comece grátis.</p>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- Cards de Cursos -->
-<section class="py-16 bg-gray-900">
-    <div class="max-w-7xl mx-auto text-center px-4">
-        <h3 class="text-2xl font-semibold mb-8">Cursos Populares</h3>
-        <div class="grid md:grid-cols-3 gap-6 mb-8">
-            <div class="space-y-2">
-                <img src="{% static 'global/image/bitcoin.jpg' %}" class="mx-auto rounded" />
-                <p>Introdução ao Bitcoin</p>
-            </div>
-            <div class="space-y-2">
-                <img src="{% static 'global/image/ethereum.jpg' %}" class="mx-auto rounded" />
-                <p>Ethereum e Smart Contracts</p>
-            </div>
-            <div class="space-y-2">
-                <img src="{% static 'global/image/nft.jpg' %}" class="mx-auto rounded" />
-                <p>NFTs: Tokens Não Fungíveis</p>
-            </div>
-        </div>
-        <a href="{% url 'cursos' %}" class="px-6 py-3 border border-red-500 rounded hover:bg-red-500 transition">
-            Ver Todos os Cursos
-        </a>
+  <!-- Benefícios -->
+  <section id="como" class="container mx-auto px-6 py-20">
+    <h2 class="text-3xl font-bold text-center mb-12">Por que aprender sobre criptomoedas?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+        <div class="text-5xl mb-4">💰</div>
+        <h3 class="text-xl font-semibold mb-2">O que é?</h3>
+        <p>Pix x Bitcoin: dinheiro digital sem fronteiras.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+        <div class="text-5xl mb-4">🔐</div>
+        <h3 class="text-xl font-semibold mb-2">É seguro?</h3>
+        <p>Cofre digital que só você pode abrir.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+        <div class="text-5xl mb-4">📈</div>
+        <h3 class="text-xl font-semibold mb-2">Para que serve?</h3>
+        <p>Invista, pague e garanta sua liberdade financeira.</p>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- Stats -->
-<section class="py-16">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-6 text-center px-4">
-        <div>
-            <p class="text-4xl font-bold">203K+</p>
-            <p>Usuários Ativos</p>
-        </div>
-        <div>
-            <p class="text-4xl font-bold">400K+</p>
-            <p>Transações Mensais</p>
-        </div>
-        <div>
-            <p class="text-4xl font-bold">502+</p>
-            <p>Cursos Disponíveis</p>
-        </div>
+  <!-- Depoimentos -->
+  <section id="depoimentos" class="bg-white py-20">
+    <h2 class="text-3xl font-bold text-center mb-12">O que nossos alunos dizem</h2>
+    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <blockquote class="p-6 rounded-xl shadow-lg">
+        <p class="italic mb-4">"O curso me deu confiança para usar criptomoedas no dia a dia."</p>
+        <footer class="font-semibold">— João, 30 anos</footer>
+      </blockquote>
+      <blockquote class="p-6 rounded-xl shadow-lg">
+        <p class="italic mb-4">"Metáforas do dia a dia fizeram tudo fazer sentido."</p>
+        <footer class="font-semibold">— Maria, 26 anos</footer>
+      </blockquote>
+      <blockquote class="p-6 rounded-xl shadow-lg">
+        <p class="italic mb-4">"Recomendo para quem nunca ouviu falar em blockchain!"</p>
+        <footer class="font-semibold">— Pedro, 35 anos</footer>
+      </blockquote>
     </div>
-</section>
-{% endblock main %}
+  </section>
+
+  <!-- Cursos -->
+  <section id="cursos" class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-4">Nossos Cursos</h2>
+      <p class="text-center mb-8">Nível iniciante, intermediário e avançado. Comece grátis!</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
+        <div class="w-full max-w-xs p-6 rounded-xl shadow-lg text-center">
+          <h3 class="text-2xl font-semibold mb-2">Iniciante</h3>
+          <p class="mb-4">Introdução ao Dinheiro Digital</p>
+          <a href="#" class="px-3 py-2 bg-blue-400 text-white rounded-full font-semibold hover:bg-blue-500">
+            Inscrever grátis
+          </a>
+        </div>
+        <div class="w-full max-w-xs p-6 rounded-xl shadow-lg text-center">
+          <h3 class="text-2xl font-semibold mb-2">Intermediário</h3>
+          <p class="mb-4">Como investir com segurança</p>
+          <a href="#" class="px-3 py-2 bg-blue-400 text-white rounded-full font-semibold hover:bg-blue-500">
+            Inscrever grátis
+          </a>
+        </div>
+        <div class="w-full max-w-xs p-6 rounded-xl shadow-lg text-center">
+          <h3 class="text-2xl font-semibold mb-2">Avançado</h3>
+          <p class="mb-4">DeFi, NFTs e o futuro</p>
+          <a href="#" class="px-3 py-2 bg-blue-400 text-white rounded-full font-semibold hover:bg-blue-500">
+            Inscrever grátis
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

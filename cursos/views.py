@@ -1,23 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from .models import Curso
 from rest_framework import viewsets
-from cursos.serializers import TopicoSerializer
-from cursos.models import Topico
+from .serializers import CursoSerializer
+
+class CursoViewSet(viewsets.ModelViewSet):
+    queryset = Curso.objects.all()
+    serializer_class = CursoSerializer
+
+@login_required
+def lista_cursos(request):
+    cursos = Curso.objects.prefetch_related('modulos__conteudos').all()
+    return render(request, 'cursos/lista.html', {'cursos': cursos})
 
 
-# # Create your views here.
-# def blog(request):
-#     contexto = {
-        
-#     }
-#     return render(request, 'blog/index.html', contexto,)
 
-class TopicoViewSet(viewsets.ModelViewSet):
-    queryset = Topico.objects.all()
-    serializer_class = TopicoSerializer
-
-def artigos(request):
-    contexto = {
-        'titulo': "Educação Blockchain | Cursos",
-        'artigos': Topico.objects.all()
-    }
-    return render(request, 'cursos/index.html', contexto)
+@login_required
+def detalhe_curso(request, pk):
+    curso = get_object_or_404(Curso, pk=pk)
+    return render(request, 'cursos/detalhe.html', {'curso': curso})
